@@ -84,7 +84,7 @@ The application uses SQLAlchemy for database interactions. By default, it is con
 Example (MYsQL - default):
 ```bash
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://YOUR_USERNAME:USERNAME_PASSWORD@localhost/login'
-
+```
 3. Run the Flask application:
 
     ```bash
