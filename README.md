@@ -77,15 +77,23 @@ This project is a Flask web application with user authentication features. It al
 
 1. Make sure your virtual environment is activated.
 
-2. Run the Flask application:
+2.  Database Configuration
+
+The application uses SQLAlchemy for database interactions. By default, it is configured to use a SQLite database. To use this application you need to set the mysql username and password of your own local system so modify the 9th line in app.py
+
+Example (MYsQL - default):
+```bash
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://YOUR_USERNAME:USERNAME_PASSWORD@localhost/login'
+
+3. Run the Flask application:
 
     ```bash
     python app.py
     ```
 
-3. Open your web browser and navigate to `http://127.0.0.1:5000/`.
+4. Open your web browser and navigate to `http://127.0.0.1:5000/`.
 
-4. You can register, log in, and enjoy the features of the Flask Login System.
+5. You can register, log in, and enjoy the features of the Flask Login System.
 
 ## Notes
 
