@@ -1,0 +1,7 @@
+{
+    "params": {
+        "local_server": "True",
+        "local_uri": "mysql://root:%rxUXm*4H3p~80z@localhost/login",
+        "prod_uri": "mysql://root:%rxUXm*4H3p~80z@localhost/login"
+    }
+}

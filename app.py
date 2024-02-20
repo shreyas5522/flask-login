@@ -3,10 +3,32 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, validators
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
+import json
 
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'generated-secret-key'  # Change this to a random secret key
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://phpmyadmin:admin%40123@localhost/login'
+app = Flask(__name__, static_url_path='/static')
+app.config['SECRET_KEY'] = 'your_secret_key_here'
+
+local_server = True
+
+# Load params from config.json
+with open('config.json', 'r') as c:
+    params = json.load(c)["params"]
+
+# Convert local_server to a boolean value
+local_server = params.get('local_server', '').lower() == 'true'
+
+# Set SQLALCHEMY_DATABASE_URI based on local_server
+if local_server:
+    app.config['SQLALCHEMY_DATABASE_URI'] = params['local_uri']
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = params['prod_uri']
+
+
+if(local_server):
+    app.config['SQLALCHEMY_DATABASE_URI'] = params['local_uri']
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = params['prod_uri']
+
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
