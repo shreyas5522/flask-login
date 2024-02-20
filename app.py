@@ -23,12 +23,6 @@ if local_server:
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = params['prod_uri']
 
-
-if(local_server):
-    app.config['SQLALCHEMY_DATABASE_URI'] = params['local_uri']
-else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = params['prod_uri']
-
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
@@ -124,11 +118,6 @@ def logout():
     return redirect(url_for('login'))
 
 # ... (your existing routes)
-
-if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-    app.run(debug=True)
 
 if __name__ == '__main__':
     with app.app_context():
